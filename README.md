@@ -74,3 +74,10 @@ The PostgreSQL database schema consists of a single table, `images`, with the fo
 
 5- If you want do not want to signup to serpapi to get the API key, you can use mine for testing purposes. But I recommend you to use your own
 My API key: `cb6e6914bd4a5b1396cf8f7bc6d55af947ffbe2136b1241b2287a842d8698b05`
+
+
+### To-Do
+
+-   Add more Unit Tests
+-   Benchmark the application with different image sizes and download URLs
+-   Add support for NoSQL databases like Scylla and Cassandra
