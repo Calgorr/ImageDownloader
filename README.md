@@ -1,4 +1,4 @@
-Image Downloader with Go and Pipeline Concurrency
+Image Downloader with Go and Pipeline Pattern
 =================================================
 
 This project is an image downloader built with Go, leveraging pipeline concurrency patterns to enhance speed and efficiency. The downloader follows a structured process consisting of three main steps: downloading images concurrently, resizing them, and finally saving them onto a PostgreSQL database.
