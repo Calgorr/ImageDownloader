@@ -1,8 +1,8 @@
 package handler
 
 import (
-	imageprocessing "scaleOps/ImageDownloader/pkg/image_processing"
-	"scaleOps/ImageDownloader/pkg/model"
+	imageprocessing "github.com/Calgorr/ImageDownloader/ImageDownloader/pkg/image_processing"
+	"github.com/Calgorr/ImageDownloader/ImageDownloader/pkg/model"
 )
 
 type Resizer interface {

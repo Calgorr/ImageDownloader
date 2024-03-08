@@ -3,8 +3,9 @@ package handler
 import (
 	"image"
 	"net/http"
-	"scaleOps/ImageDownloader/pkg/model"
 	"sync"
+
+	"github.com/Calgorr/ImageDownloader/ImageDownloader/pkg/model"
 )
 
 type UrlDownloader interface {

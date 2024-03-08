@@ -2,9 +2,10 @@ package handler
 
 import (
 	"context"
-	"scaleOps/ImageDownloader/pkg/model"
-	"scaleOps/ImageDownloader/pkg/repository"
 	"time"
+
+	"github.com/Calgorr/ImageDownloader/ImageDownloader/pkg/model"
+	"github.com/Calgorr/ImageDownloader/ImageDownloader/pkg/repository"
 )
 
 type SaveImage interface {
