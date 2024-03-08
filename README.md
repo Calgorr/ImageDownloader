@@ -70,7 +70,7 @@ The PostgreSQL database schema consists of a single table, `images`, with the fo
 
 3- The application is designed to be highly configurable, with parameters such as the number of goroutines, batch size, and database connection string being easily adjustable. This flexibility allows for fine-tuning the application to suit specific requirements and optimize performance.
 
-4- As you know google has banned the access to the images from the google search page, so you can't download the images from the google search page. But After a lot of research, I found a way to fetch the image urls from the google search page. I used the `https://serpapi.com/search.json` URL to fetch the urls from the google search page.
+4- As you know google has banned the access to the images from the google search apis, so you can't use google developers tool. But After some of research, I found a way to fetch the image urls from the google search page. I used the `https://serpapi.com/search.json` URL to fetch the urls from the google search page.
 
 5- If you want do not want to signup to serpapi to get the API key, you can use mine for testing purposes. But I recommend you to use your own
 My API key: `cb6e6914bd4a5b1396cf8f7bc6d55af947ffbe2136b1241b2287a842d8698b05`
