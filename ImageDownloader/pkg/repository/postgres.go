@@ -3,6 +3,7 @@ package repository
 import (
 	"bytes"
 	"context"
+	"errors"
 	"fmt"
 	"image/jpeg"
 	"sync"
@@ -49,6 +50,9 @@ func NewImageRepository(pg *pgxpool.Pool, autoCreate bool) ImageRepository {
 }
 
 func (i *ImageRepositoryImpl) InsertImage(ctx context.Context, image []*model.Image) error {
+	if len(image) == 0 {
+		return errors.New("no images to insert")
+	}
 	conn, err := i.Pgx.Acquire(ctx)
 	if err != nil {
 		return err
