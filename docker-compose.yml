@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  ImageDownloader:
+    hostname: ImageDownloader
+    image: scaleops
+    restart: on-failure
+    environment:
+      DB_MAX_CONNECTIONS: 10
+      DB_HOST: Postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: scaleops
+      # SERP_API_KEY: YOUR_API_KEY_HERE
+      API_KEY: YOUR_API_KEY_HERE
+      SERP_API_URL: https://serpapi.com/search.json
+    command:
+      - "./main"
+      - "100"
+      - "apple"
+    depends_on:
+      - Postgres
+  
+  Postgres:
+    hostname: postgres
+    image: postgres:latest
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=scaleops
+    ports:
+      - "5433:5432"
