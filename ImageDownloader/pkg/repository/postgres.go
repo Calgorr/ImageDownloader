@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	InsertQuery = "INSERT INTO images(url, byte_array) VALUES($1, $2) ON CONFLICT DO NOTHING"
+	InsertQuery = "INSERT INTO images(url, content) VALUES($1, $2) ON CONFLICT DO NOTHING"
 	BatchSize   = 10
 )
 
