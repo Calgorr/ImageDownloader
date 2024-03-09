@@ -29,7 +29,7 @@ The architecture of the image downloader is designed to accommodate high through
 ### 30 goroutines downloading 100 images
 ![Image Downloading](benchmark/4.png "30 goroutines downloading 100 images")
     
-2.  **Image Resizing**: After downloading, images are resized as per the specified dimensions or quality requirements.
+2.  **Image Resizing**: After each image that has been downloaded it will be sent to channel and then, the image is resized as per the specified dimensions or quality requirements.
     
 3.  **Database Insertion**: To efficiently save images onto a PostgreSQL database, a batch insertion strategy is adopted. Images are inserted in batches, with a configurable batch size, and a 1-second timer ensures controlled insertion rates, preventing overload and maintaining database responsiveness.
 
