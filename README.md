@@ -60,6 +60,7 @@ The PostgreSQL database schema consists of a single table, `images`, with the fo
 
 -   `url`: The URL from which the image was downloaded. It serves as the primary key.
 -   `content`: The byte array representation of the image.
+-  `content_type`: The content type of the image, such as `image/jpeg` or `image/png`.
 
 
 ### More about the project's features
