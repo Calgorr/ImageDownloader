@@ -29,7 +29,7 @@ The architecture of the image downloader is designed to accommodate high through
 ### 30 goroutines downloading 100 images
 ![Image Downloading](benchmark/4.png "30 goroutines downloading 100 images")
     
-2.  **Image Resizing**: After downloading, images are resized as per the specified dimensions or quality requirements.
+2.  **Image Resizing**: After each image that has been downloaded it will be sent to channel and then, the image is resized as per the specified dimensions or quality requirements.
     
 3.  **Database Insertion**: To efficiently save images onto a PostgreSQL database, a batch insertion strategy is adopted. Images are inserted in batches, with a configurable batch size, and a 1-second timer ensures controlled insertion rates, preventing overload and maintaining database responsiveness.
 
@@ -72,7 +72,7 @@ The PostgreSQL database schema consists of a single table, `images`, with the fo
 
 4- As you know google has banned the access to the images from the google search apis, so you can't use google developers tool. But After some of research, I found a way to fetch the image urls from the google search page. I used the `https://serpapi.com/search.json` URL to fetch the urls from the google search page.
 
-5- If you want do not want to signup to serpapi to get the API key, you can use mine for testing purposes. But I recommend you to use your own
+5- If you do not want to signup to serpapi to get the API key, you can use mine for testing purposes. But I recommend you to use your own
 My API key: `cb6e6914bd4a5b1396cf8f7bc6d55af947ffbe2136b1241b2287a842d8698b05`
 
 
