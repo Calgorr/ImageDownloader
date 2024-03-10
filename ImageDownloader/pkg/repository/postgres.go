@@ -65,15 +65,18 @@ func (i *ImageRepositoryImpl) InsertImage(ctx context.Context, image []*model.Im
 		if img.ContentType == "image/jpeg" {
 			err := jpeg.Encode(buffer, img.Image, nil)
 			if err != nil {
-				return err
+				fmt.Println(err)
+				continue
 			}
 		} else if img.ContentType == "image/png" {
 			err := png.Encode(buffer, img.Image)
 			if err != nil {
-				return err
+				fmt.Println(err)
+				continue
 			}
 		} else {
-			return fmt.Errorf("unsupported content type: %s", img.ContentType)
+			fmt.Println(err)
+			continue
 		}
 		imageByteArray := buffer.Bytes()
 		i.Batch.Queue(InsertQuery, img.Url, imageByteArray, img.ContentType)
