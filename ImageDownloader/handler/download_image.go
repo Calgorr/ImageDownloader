@@ -2,6 +2,8 @@ package handler
 
 import (
 	"image"
+	_ "image/jpeg"
+	_ "image/png"
 	"net/http"
 	"sync"
 
@@ -56,8 +58,9 @@ func (i *ImageDownloader) DownloadImage(urls []string) <-chan model.Image {
 				}
 
 				image1 := model.Image{
-					Url:   url,
-					Image: img,
+					Url:         url,
+					ContentType: getImageContentType(resp),
+					Image:       img,
 				}
 				out <- image1
 			}
@@ -70,4 +73,9 @@ func (i *ImageDownloader) DownloadImage(urls []string) <-chan model.Image {
 	}()
 
 	return out
+}
+
+func getImageContentType(resp *http.Response) string {
+	contentType := resp.Header.Get("Content-Type")
+	return contentType
 }

@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"image/jpeg"
+	"image/png"
 	"sync"
 
 	"github.com/Calgorr/ImageDownloader/ImageDownloader/pkg/model"
@@ -15,7 +16,7 @@ import (
 )
 
 var (
-	InsertQuery = "INSERT INTO images(url, content) VALUES($1, $2) ON CONFLICT DO NOTHING"
+	InsertQuery = "INSERT INTO images(url, content,content_type) VALUES($1, $2,$3) ON CONFLICT DO NOTHING"
 	BatchSize   = 10
 )
 
@@ -61,12 +62,21 @@ func (i *ImageRepositoryImpl) InsertImage(ctx context.Context, image []*model.Im
 
 	for _, img := range image {
 		var buffer = bufferPool.Get().(*bytes.Buffer)
-		err := jpeg.Encode(buffer, img.Image, nil)
-		if err != nil {
-			return err
+		if img.ContentType == "image/jpeg" {
+			err := jpeg.Encode(buffer, img.Image, nil)
+			if err != nil {
+				return err
+			}
+		} else if img.ContentType == "image/png" {
+			err := png.Encode(buffer, img.Image)
+			if err != nil {
+				return err
+			}
+		} else {
+			return fmt.Errorf("unsupported content type: %s", img.ContentType)
 		}
 		imageByteArray := buffer.Bytes()
-		i.Batch.Queue(InsertQuery, img.Url, imageByteArray)
+		i.Batch.Queue(InsertQuery, img.Url, imageByteArray, img.ContentType)
 	}
 
 	br := conn.SendBatch(ctx, i.Batch)

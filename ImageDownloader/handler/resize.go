@@ -28,8 +28,9 @@ func (i *ImageResizer) ResizeImage(image <-chan model.Image) <-chan model.Image 
 	go func() {
 		for img := range image {
 			image := model.Image{
-				Url:   img.Url,
-				Image: imageprocessing.Resize(img.Image, i.Width, i.Height),
+				Url:         img.Url,
+				ContentType: img.ContentType,
+				Image:       imageprocessing.Resize(img.Image, i.Width, i.Height),
 			}
 			out <- image
 		}
