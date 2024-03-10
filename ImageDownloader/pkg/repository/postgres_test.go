@@ -32,23 +32,17 @@ func TestMain(m *testing.M) {
 
 func TestInsertImage(t *testing.T) {
 
-	// Initialize ImageRepositoryImpl with mock values
 	imageRepo := &ImageRepositoryImpl{
 		Pgx:       pgxz,
 		BatchSize: 10,
 		Batch:     &pgx.Batch{},
 	}
 
-	// Mock image data
 	testImage := &model.Image{
 		Url:   "test_url",
 		Image: nil,
 	}
 
-	// Create a context
-	ctx := context.Background()
-
-	// Test inserting a single image
-	err := imageRepo.InsertImage(ctx, []*model.Image{testImage})
+	err := imageRepo.InsertImage(context.Background(), []*model.Image{testImage})
 	assert.NoError(t, err)
 }
