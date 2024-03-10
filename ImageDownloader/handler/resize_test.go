@@ -41,7 +41,5 @@ func TestResizeImage(t *testing.T) {
 
 	// Assert that the resized image is as expected
 	assert.Equal(t, testImage.Url, resizedImage.Url)
-	// You may need to add further assertions based on your actual resizing logic
-	// For example, you can compare the lengths of the original and resized images.
 
 }
